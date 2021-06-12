@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <title>
+        Image Upscaling
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="" name="descriptison">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="https://raw.githubusercontent.com/vaibhavhariaramani/Breast_Cancer_Detection_ML-with-Web-End-Deployment/main/static/img/favicon1.ico" rel="icon">
+    <link href="https://raw.githubusercontent.com/vaibhavhariaramani/Breast_Cancer_Detection_ML-with-Web-End-Deployment/main/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <style>
+        .img-container {
+            text-align: center;
+        }
+        
+        .intro500 {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .intro2 {
+            background-color: white;
+        }
+        
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #drop-zone {
+            color: rgba(0, 0, 0, .3);
+            height: auto;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 20px 50px rgb(65 62 101 / 15%);
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .intro {
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        body {
+            background-image: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=50");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            {
+                % comment %
+            }
+            background-color: #63b4b9;
+            {
+                % endcomment %
+            }
+        }
+        
+        .button {
+            position: relative;
+            padding: 8px 16px;
+            background: #009579;
+            border: none;
+            outline: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        
+        .button:active {
+            background: #007a63;
+        }
+        
+        .button__text {
+            font: bold 20px "Quicksand", san-serif;
+            color: #ffffff;
+            transition: all 0.2s;
+        }
+        
+        .button--loading .button__text {
+            visibility: hidden;
+            opacity: 0;
+        }
+        
+        .button--loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid transparent;
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 1s ease infinite;
+        }
+        
+        @keyframes button-loading-spinner {
+            from {
+                transform: rotate(0turn);
+            }
+            to {
+                transform: rotate(1turn);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="img-container">
+                    <a class="navbar-brand" href="#">
+                        <h2>Image Upscaler</h2>
+                    </a>
+                </div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    <a href="https://github.com/vaibhavhariaramani">
+                        <b>Github repo</b> <i class="fa fa-github" style="font-size:36px"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/vaibhavhariaramani/Machine-Learning-Projects-and-Tutorials"><br><b>OTHER ML MODELS</b></a>
+                </li>
+                <li>
+                    <a href="https://vaibhavhariaramani.github.io/blogs/">
+                        <br><b>BLOGS</b></a>
+                </li>
+                <li>
+                    <a href="https://vaibhavhariaramani.github.io/"><br><b>PORTFOLIO</b></a>
+                </li>
+                {% comment %}
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> {% endcomment %}
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- <h1  >Image Upscaler</h1> -->
+    <!-- <h1 class="intro"> Image Upscaler</h1> -->
+    <!-- <button onclick="location.href='{% url 'script' %}'">Execute Script</button> -->
+    <!-- <hr> -->
+    <br><br>
+    <!-- {% if data %}
+
+    {{data | safe}}
+
+    {% endif %} -->
+
+    {% if raw_url or edit_url %}
+
+
+    <div class="row">
+        <div class="div1 col-lg-2">
+            <br>
+        </div>
+        <div class="div1 col-lg-3">
+
+            <h2><i>Raw Image:</i></h2>
+            <br>
+            <br>
+            <img src={{raw_url}} width="300" height="250">
+            <h3> 1x </h3>
+        </div>
+        <div class="div2 col-lg-6">
+            <h2><i>Upscaled Image:</i></h2>
+
+            <img src="{% static 'temp.png' %}" width="450" height="350">
+            <h3> 2x</h3>
+        </div>
+        <!-- <div class="col-lg-2">
+            <br>
+        </div> -->
+    </div>
+    {% endif %}
+    <br><br>
+    <div>
+        <form action="/external/" method="post" enctype="multipart/form-data" class="intro">
+
+            {% csrf_token %} &emsp;&emsp;&emsp;&emsp;&emsp;
+            <div class="row fileupload-buttonbar" class="intro">
+                <div class="col-lg-12">
+                    <div id="drop-zone">
+                        <div id="clickHere">
+                            <div class="box">
+
+                                <label for="file">
+              <figure>
+                <svg xmlns="http://www.w3.org/2000/svg" width="45" height="52" viewBox="0 0 20 17">
+                  <path
+                    d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z">
+                  </path>
+                </svg>
+              </figure>
+              <span style="color: black;">Drop image or click the button</span>
+              &emsp;&emsp;<p class=".intro500">
+              &emsp;&emsp;<input type="file" name="image" id="file" class="inputfile inputfile-4"
+              data-multiple-caption="{count} files selected" multiple="" accept=".jpg, .gif, .png, .jpeg">
+              
+              </p>
+            </label>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 12px; color: black;">JPG or PNG. Max Size 5MB or 1200*1200</p>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="button" onclick="this.classList.toggle('button--loading')">
+            <span class="button__text">Upscale image</span>
+            </button>
+
+            <script>
+                const btn = document.querySelector(".button");
+
+                btn.classList.add("button--loading");
+                btn.classList.remove("button--loading");
+            </script>
+        </form>
+
+    </div>
+
+    <!-- 	<h2>BY VAIBHAV HARIRAMANI</h2> -->
+
+    <div class="img-container">
+        <h2>
+            <p>Made with ❤️by <a href="https://www.linkedin.com/in/vaibhav-hariramani/"><span>Vaibhav Hariramani</a>&nbsp;</span>
+            </p>
+        </h2>
+    </div>
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            .fa {
+                padding: 1px;
+                font-size: 40px;
+                width: 30px;
+                text-align: center;
+                text-decoration: none;
+                border-radius: 15%;
+                margin: 8px 8px;
+            }
+            
+            <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>.fa:hover {
+                opacity: 100;
+            }
+            
+            .fa-facebook {
+                <!-- background: #000000;
+                -->color: blue;
+            }
+            
+            .fa-github {
+                <!-- background: #000000;
+                -->color: red;
+            }
+            
+            .fa-linkedin {
+                <!-- background: #000000;
+                -->color: blue;
+            }
+            
+            .fa-grav {
+                <!-- background: #000000;
+                -->color: aqua;
+            }
+            
+            .fa-instagram {
+                <!-- background: #000000;
+                -->color: #c13584;
+            }
+            
+            .fa-phone {
+                <!-- background: #000000;
+                -->color: blue;
+            }
+            
+            .fa-envelope {
+                <!-- background: #000000;
+                -->color: red;
+            }
+            
+            .fa-youtube {
+                <!-- background: #000000;
+                -->color: red;
+            }
+            
+            .fa-whatsapp {
+                <!-- background: #000000;
+                -->color: green;
+            }
+            
+            .fa-medium {
+                <!-- background: #000000;
+                -->color: blue;
+            }
+            
+            .fa-android {
+                <!-- background: #000000;
+                -->color: red;
+            }
+            
+            .fa-free-code-camp {
+                <!-- background: #000000;
+                -->color: yellow;
+            }
+            
+            .fa-telegram {
+                <!-- background: #000000;
+                -->color: blue;
+            }
+            
+            .fa-globe {
+                <!-- background: #000000;
+                -->color: aqua;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <center>
+            <!-- Add font awesome icons-->
+            <a href="https://www.linkedin.com/in/vaibhav-hariramani-087488186/" target="_blank" class="fa fa-linkedin"></a>
+            <a href="https://github.com/vaibhavhariaramani" target="_blank" class="fa fa-github"></a>
+            <a href="https://medium.com/@vaibhav.hariramani01"><i class="fa fa-medium"></i></a>
+
+            <a href="https://vaibhavhariaramani.github.io/" target="_blank" class="fa fa-grav"></a>
+            <a href="https://www.youtube.com/channel/UCy7amUpLnsRLEMIaJGGBYog" target="_blank"><i class="fa fa-youtube">&nbsp;</i></a>
+            <a href="tel:+917790991077" target="_blank"><i class="fa fa-phone"></i></a>
+            <a href="mailto:vaibhav.hariramani01@company.com" target="_blank"><i class="fa fa-envelope"></i></a>
+
+
+        </center>
+        <center>
+            <!-- Add font awesome icons-->
+            <a href="https://www.instagram.com/geeky_bawa_/?hl=en" target="_blank" class="fa fa-instagram"></a>
+            <a href="http://wa.me/917790991077?text=Hey+Vaibhav!+HIT_ENTER" target="_blank"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://sites.google.com/view/geeky-traveller/home" target="_blank"><i class="fa fa-globe"></i></a>
+            <a href="https://medium.com/@vaibhav.hariramani01" target="_blank"><i class="fa fa-medium"></i></a>
+            <a href="https://drive.google.com/file/d/1qcX-1GQ1-YYQaXgG4LnTejJh6bxrW3oZ/view?usp=sharing" target="_blank"><i class="fa fa-android"></i></a>
+            <a href="https://discord.gg/cXY3pY7a" target="_blank"><i class="fa fa-free-code-camp"></i></a>
+            <a href="https://www.blogger.com/blog/posts/6554405380948473083" target="_blank"><i class="fa fa-telegram"></i></a>
+            <a href="https://www.facebook.com/jayesh.hariramani.3" target="_blank" class="fa fa-facebook"></a>
+        </center>
+
+        </head>
+
+        </ul>
+
+        </center>
+        </div>
+
+    </body>
+
+</html>

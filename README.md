@@ -1,3 +1,5 @@
+## IMAGE UPSCALING ALGORITHM
+
 # SRCNN
 Implementation of SRCNN in PyTorch.
 
@@ -17,16 +19,22 @@ To use the model on an image: (the zoom factor must be the same the one used to 
 
 Original image:
 
-![Original image](1_original.jpg "Original image")
+![Original image](1_SRCNN\images\input\1_original.jpg "Original image")
 
 Bicubic interpolation zoom:
 
-![Bicubic interpolation zoom](2_bicubic.jpg "Bicubic interpolation zoom")
+![Bicubic interpolation zoom](1_SRCNN\images\2_bicubic.jpg "Bicubic interpolation zoom")
 
 SRCNN zoom:
 
-![ SRCNN zoom](3_srcnn.jpg "SRCNN zoom")
+![ SRCNN zoom](1_SRCNN\images\3_srcnn.jpg "SRCNN zoom")
+
+# FSRCNN
+
+Under Construction
 
 # Reference
 
 [Original paper on SRCNN by Dong et al. (*Image Super-Resolution Using Deep Convolutional Networks*)](http://personal.ie.cuhk.edu.hk/~ccloy/files/eccv_2014_deepresolution.pdf)
+
+[Accelerating the Super-Resolution Convolutional Neural Network by Chao Dong, Chen Change Loy, Xiaoou Tang](http://mmlab.ie.cuhk.edu.hk/projects/FSRCNN.html)
