@@ -1,5 +1,6 @@
 ## IMAGE UPSCALING ALGORITHM
-
+## Using OpenCv's DNN MODULE
+<img src="https://github.com/vaibhavhariaramani/Image_Upscaling_Algorithms/blob/main/images/opencv_super_resolution_fsrcnn_arch.png">
 # SRCNN
 Implementation of SRCNN in PyTorch.
 
@@ -19,15 +20,15 @@ To use the model on an image: (the zoom factor must be the same the one used to 
 
 Original image:
 
-![Original image](1_SRCNN\images\input\1_original.jpg "Original image")
+![Original image](https://github.com/vaibhavhariaramani/Image_Upscaling_Algorithms/blob/main/1_SRCNN/images/input/1_original.jpg "Original image")
 
 Bicubic interpolation zoom:
 
-![Bicubic interpolation zoom](1_SRCNN\images\2_bicubic.jpg "Bicubic interpolation zoom")
+![Bicubic interpolation zoom](https://github.com/vaibhavhariaramani/Image_Upscaling_Algorithms/blob/main/1_SRCNN/images/2_bicubic.jpg "Bicubic interpolation zoom")
 
 SRCNN zoom:
 
-![ SRCNN zoom](1_SRCNN\images\3_srcnn.jpg "SRCNN zoom")
+![ SRCNN zoom](https://github.com/vaibhavhariaramani/Image_Upscaling_Algorithms/blob/main/1_SRCNN/images/3_srcnn.jpg "SRCNN zoom")
 
 # FSRCNN
 
